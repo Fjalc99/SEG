@@ -1,7 +1,9 @@
 from ufos import *
 
+fichero = '../data/ovnis.csv'
 # Test de la función lee_avistamientos
-print(lee_avistamiento('c:/Users/Fran/Desktop/SEG/Ufos/data/ovnis.csv'))
+avistamiento = leeAvistamientos('../data/ovnis.csv')
+print(avistamiento)
 
 
 #Test de la función duracion_total
