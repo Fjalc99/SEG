@@ -6,3 +6,19 @@
 - Expresión no balanceada: { a * ( c + d ) ] - 5 }
 
 """
+
+"""
+#Hacerlo mejor con un diccionario
+def check_expression(expression: str):
+    stack = []
+    brackets = {"(": ")", "[": "]", "{": "}"}
+    for char in expression:
+        if char in brackets.keys():
+            stack.append(char)
+        elif char in brackets.values():
+            if not stack:
+                return False
+            if brackets[stack.pop()] != char:
+                return False
+    return not stack
+"""

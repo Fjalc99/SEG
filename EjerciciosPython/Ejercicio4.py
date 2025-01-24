@@ -3,11 +3,11 @@ Crea una función que reciba un String de cualquier tipo y se encargue de poner 
 - No se pueden utilizar operaciones del lenguaje que lo resuelvan directamente.
 
 """
-def mayuculas(texto):
+def mayuculas(texto: str):
     texto = texto.split()
     texto = [palabra[0].upper() + palabra[1:] for palabra in texto]
     return " ".join(texto)
 
-print("Inserte un texto")
-texto = input()
+## print("Inserte un texto") # Esto sobra se puede poner como la siguiente línea
+texto = input("Inserte un texto: ")
 print(mayuculas(texto))
