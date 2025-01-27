@@ -7,18 +7,32 @@
 
 """
 
-"""
-#Hacerlo mejor con un diccionario
-def check_expression(expression: str):
-    stack = []
-    brackets = {"(": ")", "[": "]", "{": "}"}
-    for char in expression:
-        if char in brackets.keys():
-            stack.append(char)
-        elif char in brackets.values():
-            if not stack:
-                return False
-            if brackets[stack.pop()] != char:
-                return False
-    return not stack
-"""
+def delimitadores_equilibrados(expresion):
+    
+    pila = []
+    
+    pares_delimitadores = {
+        ')': '(',
+        '}': '{',
+        ']': '[',
+    }
+   
+    delimitadores_apertura = set(pares_delimitadores.values())
+
+    for caracter in expresion:
+        if caracter in delimitadores_apertura:
+            pila.append(caracter)  
+        elif caracter in pares_delimitadores:
+            if not pila or pila[-1] != pares_delimitadores[caracter]:
+                return False  
+            pila.pop()  
+
+    return len(pila) == 0  
+
+
+if __name__ == "__main__":
+    expresion = input("Ingresa una expresión: ")
+    if delimitadores_equilibrados(expresion):
+        print("La expresión está equilibrada.")
+    else:
+        print("La expresión no está equilibrada.")

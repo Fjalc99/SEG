@@ -8,6 +8,6 @@ def mayuculas(texto: str):
     texto = [palabra[0].upper() + palabra[1:] for palabra in texto]
     return " ".join(texto)
 
-## print("Inserte un texto") # Esto sobra se puede poner como la siguiente línea
+
 texto = input("Inserte un texto: ")
 print(mayuculas(texto))

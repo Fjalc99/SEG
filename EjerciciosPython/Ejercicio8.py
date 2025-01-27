@@ -12,6 +12,32 @@ Ej: 1 Peloso pierde contra 1 Orco
  
 """
 
+def calcular_resultado(bando_bondadoso, bando_malvado):
+    
+    razas_bondadosas = {"Pelosos": 1, "Sureños buenos": 2, "Enanos": 3, "Númenóreanos": 4, "Elfos": 5}
+    razas_malvadas = {"Sureños malos": 2, "Orcos": 2, "Goblins": 2, "Huargos": 3, "Trolls": 5}
+    
+   
+    def calcular_fuerza(razas, bando):
+        fuerza = 0
+        for raza, cantidad in bando.items():
+            fuerza += razas[raza] * cantidad
+        return fuerza
+    
+ 
+    fuerza_bondadoso = calcular_fuerza(razas_bondadosas, bando_bondadoso)
+    fuerza_malvado = calcular_fuerza(razas_malvadas, bando_malvado)
+    
+
+    if fuerza_bondadoso > fuerza_malvado:
+        return "El bien gana"
+    elif fuerza_malvado > fuerza_bondadoso:
+        return "El mal gana"
+    else:
+        return "Empate"
 
 
-
+bando_bondadoso = {"Pelosos": 1, "Enanos": 3}
+bando_malvado = {"Trolls": 5, "Goblins": 1}
+resultado = calcular_resultado(bando_bondadoso, bando_malvado)
+print(resultado)  

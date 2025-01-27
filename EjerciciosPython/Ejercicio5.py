@@ -11,4 +11,43 @@ Crea una función que evalúe si un/a atleta ha superado correctamente una carre
 
 """
 
-     
+
+def evaluar_carrera(acciones, pista):
+    
+    pista_lista = list(pista)
+    
+ 
+    for i in range(len(acciones)):
+      
+        accion = acciones[i]
+        tramo = pista_lista[i]
+        
+   
+        if accion == "run":
+            if tramo == "|":
+                pista_lista[i] = "/" 
+            elif tramo == "_":
+                continue 
+        elif accion == "jump":
+            if tramo == "_":
+                pista_lista[i] = "x"  
+            elif tramo == "|":
+                continue  
+    
+
+    carrera_exitosa = all(tramo != "x" and tramo != "/" for tramo in pista_lista)
+    
+
+    pista_resultado = ''.join(pista_lista)
+    
+
+    print(f"Pista resultante: {pista_resultado}")
+    
+ 
+    return carrera_exitosa
+
+
+acciones = ["run", "jump", "run", "run"]
+pista = "_|_|_"
+resultado = evaluar_carrera(acciones, pista)
+print("¿Carrera superada?", resultado)
