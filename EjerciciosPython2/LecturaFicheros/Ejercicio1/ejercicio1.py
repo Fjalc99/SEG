@@ -1,4 +1,5 @@
 import csv
+import os
 
 def leer_datos(fichero):
     alumnos = []
@@ -48,15 +49,20 @@ def calcular_porcentaje_aprobados(alumnos, curso):
         print(f"{asignatura}: {porcentaje:.2f}%")
 
 def generar_fichero_curso(alumnos, curso):
-    with open(f"{curso}.txt", "w", encoding="utf-8") as f:
+    
+    directorio_actual = os.path.dirname(os.path.abspath(__file__))
+
+    ruta_fichero = os.path.join(directorio_actual, f"{curso}.txt")
+    
+    with open(ruta_fichero, "w", encoding="utf-8") as f:
         for alumno in alumnos:
             if alumno['curso'] == curso:
                 media = calcular_nota_media(alumno["notas"])
                 f.write(f"{alumno['nombre']} {alumno['apellidos']}: {media:.2f}\n")
-    print(f"Fichero {curso}.txt generado correctamente.")
+    print(f"Fichero {curso}.txt generado correctamente en {directorio_actual}.")
 
 def menu():
-    fichero = "notas.txt"
+    fichero = "LecturaFicheros/Ejercicio1/notas.txt"
     alumnos = leer_datos(fichero)
     
     while True:

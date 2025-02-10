@@ -51,8 +51,8 @@ def generar_estadisticas(datos, fichero_salida):
         escritor.writerows(estadisticas)
 
 def main():
-    datos = leer_cotizaciones('cotizacion.csv')
-    generar_estadisticas(datos, 'estadisticas_cotizacion.csv')
+    datos = leer_cotizaciones('LecturaFicheros\Ejercicio2\cotizacion.csv')
+    generar_estadisticas(datos, 'LecturaFicheros\Ejercicio2\estadisticas_cotizacion.csv')
 
 if __name__ == "__main__":
     main()
