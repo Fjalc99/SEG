@@ -1,10 +1,10 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from app.database import Base
 
-class Task(Base):
-    __tablename__ = "tasks"
-    
+class Tarea(Base):
+    __tablename__ = "tareas"
+
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String, default="")
-    done = Column(Integer, default=0)
+    titulo = Column(String, index=True)
+    descripcion = Column(String, index=True)
+    hecha = Column(Boolean, default=False)

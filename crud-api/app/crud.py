@@ -1,33 +1,33 @@
 from sqlalchemy.orm import Session
-from app.models import Task
-from app.schemas import TaskCreate, TaskUpdate
+from app.models import Tarea
+from app.schemas import TareaCrear, TareaActualizar
 
-def create_task(db: Session, task: TaskCreate):
-    db_task = Task(title=task.title, description=task.description, done=task.done)
-    db.add(db_task)
+def crear_tarea(db: Session, tarea: TareaCrear):
+    db_tarea = Tarea(titulo=tarea.titulo, descripcion=tarea.descripcion, hecha=tarea.hecha)
+    db.add(db_tarea)
     db.commit()
-    db.refresh(db_task)
-    return db_task
+    db.refresh(db_tarea)
+    return db_tarea
 
-def get_tasks(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Task).offset(skip).limit(limit).all()
+def obtener_tareas(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Tarea).offset(skip).limit(limit).all()
 
-def get_task(db: Session, task_id: int):
-    return db.query(Task).filter(Task.id == task_id).first()
+def obtener_tarea(db: Session, tarea_id: int):
+    return db.query(Tarea).filter(Tarea.id == tarea_id).first()
 
-def update_task(db: Session, task_id: int, task: TaskUpdate):
-    db_task = db.query(Task).filter(Task.id == task_id).first()
-    if db_task:
-        db_task.title = task.title
-        db_task.description = task.description
-        db_task.done = task.done
+def actualizar_tarea(db: Session, tarea_id: int, tarea: TareaActualizar):
+    db_tarea = db.query(Tarea).filter(Tarea.id == tarea_id).first()
+    if db_tarea:
+        db_tarea.titulo = tarea.titulo
+        db_tarea.descripcion = tarea.descripcion
+        db_tarea.hecha = tarea.hecha
         db.commit()
-        db.refresh(db_task)
-    return db_task
+        db.refresh(db_tarea)
+    return db_tarea
 
-def delete_task(db: Session, task_id: int):
-    db_task = db.query(Task).filter(Task.id == task_id).first()
-    if db_task:
-        db.delete(db_task)
+def eliminar_tarea(db: Session, tarea_id: int):
+    db_tarea = db.query(Tarea).filter(Tarea.id == tarea_id).first()
+    if db_tarea:
+        db.delete(db_tarea)
         db.commit()
-    return db_task
+    return db_tarea
